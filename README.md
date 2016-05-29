@@ -6,6 +6,7 @@ http://www.axismaps.com/blog/2012/01/dont-panic-an-absolute-beginners-guide-to-b
 http://wiki.openstreetmap.org/wiki/PostGIS/Installation#Complete_Installation_for_Ubuntu
 https://github.com/mapnik/mapnik/wiki/UbuntuInstallation
 https://github.com/mapnik/mapnik/wiki/UsingScons
+https://github.com/giantmolecules/opentileserver/blob/master/opentileserver.sh
 
 Starting with a fresh Ubuntu 14.04LTS install....
 
