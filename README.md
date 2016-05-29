@@ -7,8 +7,7 @@ http://wiki.openstreetmap.org/wiki/PostGIS/Installation#Complete_Installation_fo
 https://github.com/mapnik/mapnik/wiki/UbuntuInstallation
 https://github.com/mapnik/mapnik/wiki/UsingScons
 https://github.com/giantmolecules/opentileserver/blob/master/opentileserver.sh
-https://switch2osm.org/serving-tiles/
-
+https://switch2osm.org/serving-tiles
 
 Starting with a fresh Ubuntu 14.04LTS install....
 
