@@ -4,6 +4,7 @@ steps from:
 http://www.axismaps.com/blog/2012/01/dont-panic-an-absolute-beginners-guide-to-building-a-map-server/
 http://wiki.openstreetmap.org/wiki/PostGIS/Installation#Complete_Installation_for_Ubuntu
 https://github.com/mapnik/mapnik/wiki/UbuntuInstallation
+https://github.com/mapnik/mapnik/wiki/UsingScons
 
 Starting with a fresh Ubuntu 14.04LTS install....
 
@@ -129,4 +130,53 @@ E: Unable to correct problems, you have held broken packages.
 Remove mapnik:
 ```
 sudo apt-get purge libmapnik* mapnik-* python-mapnik
+```
+Attempt to build from source instead, so setup build environment:
+```
+sudo apt-get install libboost-dev libboost-filesystem-dev \
+libboost-program-options-dev libboost-python-dev \
+libboost-regex-dev libboost-system-dev libboost-thread-dev \
+
+sudo apt-get install \
+    libboost-filesystem-dev \
+    libboost-program-options-dev \
+    libboost-python-dev libboost-regex-dev \
+    libboost-system-dev libboost-thread-dev \
+
+sudo apt-get install \
+    libicu-dev \
+    python-dev libxml2 libxml2-dev \
+    libfreetype6 libfreetype6-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libproj-dev \
+    libtiff-dev \
+    libcairo2 libcairo2-dev python-cairo python-cairo-dev \
+    libcairomm-1.0-1 libcairomm-1.0-dev \
+    ttf-unifont ttf-dejavu ttf-dejavu-core ttf-dejavu-extra \
+    git build-essential python-nose \
+    libgdal1-dev python-gdal \
+    
+wget http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-0.9.26.tar.bz2
+tar xf harfbuzz-0.9.26.tar.bz2
+cd harfbuzz-0.9.26
+./configure && make && sudo make install
+sudo ldconfig
+cd ../
+apt-get update
+apt-get upgrade
+git clone https://github.com/mapnik/mapnik --depth 10
+cd mapnik
+git submodule update --init deps/mapbox/variant
+./configure
+make && sudo make install
+```
+This of course fails. According to this
+https://github.com/mapnik/mapnik/issues/3385
+Try using python scons.
+```
+$ cd mapnik_src_dir
+$ python scons/scons.py configure # will configure compilation and save out configuration to a python pickle
+$ python scons/scons.py # will compile mapnik sources (running configure first if not done yet)
+$ sudo python scons/scons.py install # will install Mapnik (running configure and compiling first if not done yet)
 ```
