@@ -1,6 +1,7 @@
 # Manually installing a Tileserver
 
 steps from:
+
 http://www.axismaps.com/blog/2012/01/dont-panic-an-absolute-beginners-guide-to-building-a-map-server/
 http://wiki.openstreetmap.org/wiki/PostGIS/Installation#Complete_Installation_for_Ubuntu
 https://github.com/mapnik/mapnik/wiki/UbuntuInstallation
@@ -292,6 +293,5 @@ http://maps.generalradio.org/tiles.py//atlas/preview.html#5/37.347/-98.002
 THINGS TO DO
 
 - [ ] fix mod_tile
+-  [ ] fix mapnik
 - [ ] renderd
-
-```
