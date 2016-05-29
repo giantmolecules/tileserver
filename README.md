@@ -269,4 +269,29 @@ and /etc/apache2/sites-available/maps.generalradio.org looks like this:
 </VirtualHost>
 ```
 The TileStache config file should be in /etc/tilestache.cfg
+HEre's what it looks like:
+```
+{
+  "cache":
+  {
+    "name": "Test"
+  },
+  "layers": 
+  {
+    "atlas":
+    {
+        "provider": {"name": "mbtiles", "tileset": "/var/www/html/generalradio.org/public_html/maps/noospheric_atlas_tiles_6c3dd9.mbtiles"}
+    }
+  }
+}
+```
+enter this URL in the browser:
 
+http://maps.generalradio.org/tiles.py//atlas/preview.html#5/37.347/-98.002
+
+THINGS TO DO
+
+- [ ] fix mod_tile
+- [ ] renderd
+
+```
