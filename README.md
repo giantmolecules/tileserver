@@ -201,7 +201,7 @@ and now finally install mapnik 2.3 from pkg:
 sudo apt-get update
 sudo apt-get install libmapnik libmapnik-dev mapnik-utils python-mapnik
 ```
-# also install datasource plugins if you need them
+also install datasource plugins if you need them
 ```
 sudo apt-get install mapnik-input-plugin-gdal mapnik-input-plugin-ogr\
   mapnik-input-plugin-postgis \
@@ -214,5 +214,59 @@ python
 >>>import mapnik
 >>>
 ```
-great!
+great! On to more interesting things like TileStache
+make sure we have some stuff:
+```
+apt-get install curl
+sudo apt-get install git-core
+apt-get install python-setuptools
+apt-get install python-dev
+apt-get install python-pip
+apt-get install libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev
+pip install -U werkzeug
+pip install -U modestmaps
+pip install -U simplejson
+pip install -U werkzeug
+pip install pillow
+```
+and now for TileStache
+```
+git clone https://github.com/TileStache/TileStache.git
+cd TileStache/
+python setup.py install
+```
+apache2-mod-python was already installed
+and /etc/apache2/sites-available/maps.generalradio.org looks like this:
+```
+# domain: generalradio.org
+# public: /var/www/html/generalradio.org/public_html/maps
+
+<VirtualHost *:80>
+  # Admin email, Server Name (domain name), and any aliases
+  ServerAdmin brettbalogh@gmail.com
+  ServerName  maps.generalradio.org
+  ServerAlias generalradio.org
+
+  # Index file and Document Root (where the public files are located)
+  DirectoryIndex index.html index.php
+  DocumentRoot /var/www/html/generalradio.org/public_html/maps
+  # Log file locations
+  LogLevel warn
+  ErrorLog  /var/www/html/generalradio.org/log/error.log
+  CustomLog /var/www/html/generalradio.org/log/access.log combined
+
+<Directory /var/www/html/generalradio.org/public_html/maps/>
+          Options Indexes FollowSymLinks MultiViews
+          AllowOverride None
+          Order allow,deny
+          allow from all
+          AddHandler mod_python .py
+          PythonHandler TileStache::modpythonHandler
+	  PythonOption config /etc/tilestache.cfg
+          PythonDebug On
+     </Directory>
+
+</VirtualHost>
+```
+The TileStache config file should be in /etc/tilestache.cfg
 
