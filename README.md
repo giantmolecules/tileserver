@@ -178,5 +178,41 @@ Try using python scons.
 $ cd mapnik_src_dir
 $ python scons/scons.py configure # will configure compilation and save out configuration to a python pickle
 $ python scons/scons.py # will compile mapnik sources (running configure first if not done yet)
+```
+...wait a long time...
+...
+...
+... eventually fails, so don't do this:
+```
 $ sudo python scons/scons.py install # will install Mapnik (running configure and compiling first if not done yet)
 ```
+instead, let's try to install mapnik 2x from packages.
+remove the nightly-trunk ppa:
+```
+apt-get install ppa-purge
+ppa-purge ppa:mapnik/nightly-trunk
+```
+make sure 2.3 nightly is added to sources:
+```
+add-apt-repository ppa:mapnik/nightly-2.3
+```
+and now finally install mapnik 2.3 from pkg:
+```
+sudo apt-get update
+sudo apt-get install libmapnik libmapnik-dev mapnik-utils python-mapnik
+```
+# also install datasource plugins if you need them
+```
+sudo apt-get install mapnik-input-plugin-gdal mapnik-input-plugin-ogr\
+  mapnik-input-plugin-postgis \
+  mapnik-input-plugin-sqlite \
+  mapnik-input-plugin-osm
+```
+test to see if it installed correctly
+```
+python
+>>>import mapnik
+>>>
+```
+great!
+
