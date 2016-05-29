@@ -41,7 +41,9 @@ Reload Apache:
 ```
 sudo service apache2 reload
 ```
-- [ ]set FQDN in apache2.conf?
+- [ ] Set FQDN in apache2.conf?
+- [ ] Setup Firewall using IPTABLES
+
 
 
 
